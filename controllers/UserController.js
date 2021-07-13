@@ -22,7 +22,7 @@ class UserController{
         var {email, name, password} = req.body;
 
         if(email == undefined){
-            res.status = 400;
+            res.status(400);
             res.json({err: "O e-mail é inválido!"})
             return
         }
@@ -39,6 +39,23 @@ class UserController{
 
         res.status(200);
         res.send("Tudo OK")
+    }
+
+    async edit(req, res){
+        var {id, name, role, email} = req.body;
+        var result = await User.update(id, email, name, role);
+        if(result != undefined){
+            if(result.status){
+                res.status(200);
+                res.send("Tudo OK!");
+            }else{
+                res.status(406);
+                res.send(result.err)
+            }
+        }else{
+            res.status(406);
+            res.send("Ocorreu um erro no servidor!")
+        }
     }
 
 }
