@@ -35,7 +35,7 @@ class PasswordToken{
                 if(tk.used){
                     return {status: false};
                 }else{
-                    return {status: true, tk};
+                    return {status: true,token: tk};
                 }
 
 
@@ -47,7 +47,10 @@ class PasswordToken{
             console.log(err);
             return false
         } 
-        
+    }
+
+    async setUsed(token){
+        await knex.update({used: 1}).where({token: token}).table("passwordtokens");
     }
 
 }

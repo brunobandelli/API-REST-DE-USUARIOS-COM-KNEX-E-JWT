@@ -90,7 +90,9 @@ class UserController{
         var password = req.body.password;
         var isTokenValid = await PasswordToken.validate(token);
        if(isTokenValid.status){ 
-
+            await User.changePassword(password,isTokenValid.token.user_id,isTokenValid.token.token)
+            res.status(200);
+            res.send("Senha alterada");
         }else{
             res.status(406);
             res.send("Token Inválido!");
