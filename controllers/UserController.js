@@ -85,6 +85,18 @@ class UserController{
         }
     }
 
+    async changePassword(req, res){
+        var token = req.body.token;
+        var password = req.body.password;
+        var isTokenValid = await PasswordToken.validate(token);
+       if(isTokenValid.status){ 
+
+        }else{
+            res.status(406);
+            res.send("Token Inválido!");
+        }
+    }
+
 }
 
 module.exports = new UserController();
