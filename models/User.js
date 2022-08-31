@@ -90,9 +90,10 @@ class User{
                     }else{
                         return {status: false, err: "O e-mail já está cadastrado"}
                     }
-                }else{
-                    return {status: false, err:"Esse já é o e-mail atual!"}
                 }
+                // else{
+                //     return {status: false, err:"Esse já é o e-mail atual!"}
+                // }
             }
 
             if(name != undefined){
